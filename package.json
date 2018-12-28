@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eslint": "^5.11.1",
+    "jest": "^23.6.0",
+    "node": "^11.5.0",
     "uuid": "^3.2.1"
   }
 }
