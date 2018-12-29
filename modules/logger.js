@@ -1,8 +1,10 @@
 'use strict';
 
+const chatroom = require('../chatroom.js');
 const events = require('./events.js');
 const app = require('./app.js');
 
+events.on('accept-entry', dispatchCommand);
 events.on('parse-buffer', parseBuffer);
 
 function parseBuffer(buffer) {
@@ -14,4 +16,13 @@ function parseBuffer(buffer) {
   events.emit('accept-entry', {command,payload,target,message});
 }
 
-module.export = {parseBuffer};
+function dispatchCommand({command,payload,target,message}) {
+  let entry = {command,payload,target,message};
+  console.log('I am in dispatchCommand', entry);
+  
+  if ( entry && typeof chatroom.commands[entry.command] === 'function' ) {
+    chatroom.commands[entry.command](entry, userId);
+  }
+}
+
+module.export = {dispatchCommand, parseBuffer};
