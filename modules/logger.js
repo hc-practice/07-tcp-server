@@ -11,7 +11,7 @@ function parseBuffer(buffer) {
   if ( !text.startsWith('@') ) { return null; }
   let [command,payload] = text.split(/\s+(.*)/);
   let [target,message] = payload.split(/\s+(.*)/);
-  events.emit('accept-buffer', {command,payload,target,message});
+  events.emit('accept-entry', {command,payload,target,message});
 }
 
 module.export = {parseBuffer};
