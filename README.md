@@ -5,9 +5,12 @@
 
 ### Author: Heather Cherewaty
 
+### Collaborated with:  Becca Lee & Hannah Ingham
+
 ### Links and Resources
+[![Build Status](https://www.travis-ci.com/hcherewaty/07-tcp-server.svg?branch=master)](https://www.travis-ci.com/hcherewaty/07-tcp-server)
 * [repo](https://github.com/hcherewaty/07-tcp-server)
-* [travis](http://xyz.com)
+* [travis](https://www.travis-ci.com/hcherewaty/07-tcp-server)
 
 
 ### Modules
