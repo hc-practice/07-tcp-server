@@ -4,16 +4,19 @@ const chatroom = require('../chatroom.js');
 const events = require('./events.js');
 const logger = require('./logger.js');
 
+const socketPool = {};
 
-let dispatchAction = (userId, buffer) => {
-  parse(buffer);
-};
+events.on('emitting-socket', dispatchAction);
 
-let parse = (buffer) => {
+function dispatchAction(buffer, userId, socketPool) {
+  // console.log(socketPool);
+  parse(buffer, userId, socketPool);
+}
+
+let parse = (buffer, userId, socketPool) => {
   // console.log('buffer:', buffer);
-  events.emit('parse-buffer', buffer);
+  events.emit('parse-buffer', buffer, userId, socketPool);
 };
-
 
 
 module.exports = {dispatchAction, parse};
