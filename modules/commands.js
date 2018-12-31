@@ -21,8 +21,9 @@ commands['@quit'] = (data, userId, socketPool) => {
   events.emit('quit', data, userId, socketPool);
 };
   
-commands['@list'] = (data, userId, socketPool) => {
-  console.log(chatroom.socketArray);
+commands['@list'] = (data, userId, socketPool, socketArray) => {
+  let userList = socketArray;
+  console.log(userList);
 };
 
 module.exports = {commands};

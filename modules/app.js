@@ -8,14 +8,14 @@ const socketPool = {};
 
 events.on('emitting-socket', dispatchAction);
 
-function dispatchAction(buffer, userId, socketPool) {
+function dispatchAction(buffer, userId, socketPool, socketArray) {
   // console.log(socketPool);
-  parse(buffer, userId, socketPool);
+  parse(buffer, userId, socketPool, socketArray);
 }
 
-let parse = (buffer, userId, socketPool) => {
+let parse = (buffer, userId, socketPool, socketArray) => {
   // console.log('buffer:', buffer);
-  events.emit('parse-buffer', buffer, userId, socketPool);
+  events.emit('parse-buffer', buffer, userId, socketPool, socketArray);
 };
 
 

@@ -15,7 +15,7 @@ const logger = require('./modules/logger.js');
 const app = require('./modules/app.js');
 const events = require('./modules/events.js');
 
-let socketArray = [];
+let socketArray = {};
 
 server.on('connection', (socket) => {
   let id = uuid();
@@ -24,10 +24,8 @@ server.on('connection', (socket) => {
     nickname: `User-${id}`,
     socket: socket,
   };
-  socketArray.push(socketPool[id].id);
-  // console.log(socketArray);
-  socket.on('data', (buffer) => events.emit('emitting-socket', buffer, id, socketPool));
-  // console.log(socketPool[id].id);
+  socketArray['newId'] = socketPool[id].id;
+  socket.on('data', (buffer) => events.emit('emitting-socket', buffer, id, socketPool, socketArray));
 });
 
 events.on('quit', quitServer);
