@@ -7,6 +7,8 @@ const commands = require('./commands.js');
 
 events.on('accept-entry', dispatchCommand);
 events.on('parse-buffer', parseBuffer);
+events.on('quit', quitServer);
+events.on('@dm', dmUser);
 
 function parseBuffer(buffer, userId, socketPool, socketArray) {
   // console.log('Buffer', buffer.toString());
@@ -22,6 +24,22 @@ function dispatchCommand(entry, userId, socketPool, socketArray) {
   // console.log('In dispatchCommand', entry.command);
   if ( entry && typeof commands.commands[entry.command] === 'function' ) {
     commands.commands[entry.command](entry, userId, socketPool, socketArray);
+  }
+}
+
+function quitServer(data, userId, socketPool) {
+  console.log('in quitServer');
+  chatroom.server.close('connection', (cb) => {
+    cb(console.log('user left'));
+  });
+}
+
+function dmUser(data, userId, socketPool) {
+  for( let connection in socketPool ) {
+    let user = socketPool[connection];
+    if ( user.nickname === data.target ) {
+      user.socket.write(`    <<<${socketPool[userId].nickname}>>> ${data.message}\n`);
+    }
   }
 }
 
