@@ -26,4 +26,8 @@ commands['@list'] = (data, userId, socketPool, socketArray) => {
   console.log(userList);
 };
 
+commands['@dm'] = (data, userId, socketPool, socketArray) => {
+  events.emit('dm', data, userId, socketPool, socketArray);
+};
+
 module.exports = {commands};
