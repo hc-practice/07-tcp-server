@@ -30,6 +30,13 @@ server.on('connection', (socket) => {
 
 events.on('quit', quitServer);
 
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ */
 function quitServer(data, userId, socketPool) {
   console.log('in quitServer');
   server.close('connection', (cb) => {

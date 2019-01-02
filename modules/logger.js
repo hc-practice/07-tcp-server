@@ -10,6 +10,15 @@ events.on('parse-buffer', parseBuffer);
 events.on('quit', quitServer);
 events.on('@dm', dmUser);
 
+/**
+ *
+ *
+ * @param {*} buffer
+ * @param {*} userId
+ * @param {*} socketPool
+ * @param {*} socketArray
+ * @returns
+ */
 function parseBuffer(buffer, userId, socketPool, socketArray) {
   // console.log('Buffer', buffer.toString());
   let text = buffer.toString().trim();
@@ -19,6 +28,14 @@ function parseBuffer(buffer, userId, socketPool, socketArray) {
   events.emit('accept-entry', {command,payload,target,message}, userId, socketPool, socketArray);
 }
 
+/**
+ *
+ *
+ * @param {*} entry
+ * @param {*} userId
+ * @param {*} socketPool
+ * @param {*} socketArray
+ */
 function dispatchCommand(entry, userId, socketPool, socketArray) {
   // console.log('I am in dispatchCommand', entry);
   // console.log('In dispatchCommand', entry.command);
@@ -27,6 +44,13 @@ function dispatchCommand(entry, userId, socketPool, socketArray) {
   }
 }
 
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ */
 function quitServer(data, userId, socketPool) {
   console.log('in quitServer');
   chatroom.server.close('connection', (cb) => {
@@ -34,6 +58,13 @@ function quitServer(data, userId, socketPool) {
   });
 }
 
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ */
 function dmUser(data, userId, socketPool) {
   for( let connection in socketPool ) {
     let user = socketPool[connection];
