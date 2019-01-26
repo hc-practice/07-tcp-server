@@ -2,9 +2,12 @@
   "name": "class-06",
   "version": "1.0.0",
   "description": "",
-  "main": "chatroom.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --coverage"
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "jest --coverage --verbose",
+    "test-watch": "jest --coverage --verbose --watchAll"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
     "jest": "^23.6.0",
     "nc": "^1.0.2",
     "node": "^11.5.0",
+    "require-dir": "^1.2.0",
     "uuid": "^3.3.2"
   }
 }
